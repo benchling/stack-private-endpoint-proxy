@@ -56,12 +56,10 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
       HealthCheckIntervalSeconds: 10
-      # HealthCheckPath: String
       HealthCheckPort: 9100
       HealthCheckProtocol: TCP
       HealthCheckTimeoutSeconds: 10
       HealthyThresholdCount: 2
-      # Matcher: Matcher
       Port: !Ref DestinationPort
       Protocol: TCP
       Targets:
