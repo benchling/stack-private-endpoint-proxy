@@ -19,9 +19,13 @@ enable traffic from an external VPC to reach an on-premises network.
 ## How to Use
 Only us-east-1 is supported at this time.
 
+Download the YAML template:
+
+[https://raw.githubusercontent.com/benchling/stack-private-endpoint-proxy/master/template.yaml](https://raw.githubusercontent.com/benchling/stack-private-endpoint-proxy/master/template.yaml)
+
 Create an AWS CloudFormation stack:
 
-[![Launch AWS Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=private-endpoint-proxy&templateURL=https://raw.githubusercontent.com/benchling/stack-private-endpoint-proxy/master/template.yaml)
+[https://console.aws.amazon.com/cloudformation/home#/stacks/new](https://console.aws.amazon.com/cloudformation/home#/stacks/new)
 
 After creating, in "Resources" note the `endpointService` Physical ID - this is the endpoint
 for an Endpoint Service to connect to.
