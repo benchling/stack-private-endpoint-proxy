@@ -4,13 +4,13 @@ Parameters:
     Description: VPC to launch NLB in
     Type: AWS::EC2::VPC::Id
   Subnet1Id:
-    Description: Main subnet to launch NGINX proxy in - should be us-east-1a, us-east-1c, or us-east-1d
+    Description: Main subnet to launch NGINX proxy in - should be able to access DestinationIP
     Type: AWS::EC2::Subnet::Id
   Subnet1AvailabilityZone:
     Description: Availability zone of Subnet1
     Type: AWS::EC2::AvailabilityZone::Name
   Subnet2Id:
-    Description: Second subnet needed for NLB - should be us-east-1a, us-east-1c, or us-east-1d
+    Description: Second subnet for NLB - should be able to access DestinationIP
     Type: AWS::EC2::Subnet::Id
   Subnet2AvailabilityZone:
     Description: Availability zone of Subnet2
@@ -34,12 +34,15 @@ Resources:
   loadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      IpAddressType: ipv4
+      Type: network
       Scheme: internal
+      IpAddressType: ipv4
+      LoadBalancerAttributes:
+      - Key: load_balancing.cross_zone.enabled
+        Value: 'true'
       Subnets:
       - !Ref Subnet1Id
       - !Ref Subnet2Id
-      Type: network
   endpointService:
     Type: "AWS::EC2::VPCEndpointService"
     Properties:
